@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="profile-main">
+    <header class="profile-header">
+        <div class="profile-avatar-large">
+            {{ user.name[0] | upper }}
+        </div>
+        <section class="profile-info">
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <h2 class="profile-username">{{ user.name }}</h2>
+                <button class="btn" style="background: #efefef; color: var(--text-color);">Edit profile</button>
+            </div>
+            
+            <ul class="profile-stats" style="list-style: none;">
+                <li class="stat"><span>{{ posts|length }}</span> posts</li>
+                <li class="stat"><span>120</span> followers</li>
+                <li class="stat"><span>105</span> following</li>
+            </ul>
+            
+            <div class="profile-bio">
+                <p>{{ user.name }}</p>
+                <p style="font-weight: 400; color: var(--text-secondary);">{{ user.email }}</p>
+            </div>
+        </section>
+    </header>
+
+    <div style="border-top: 1px solid var(--border-color); display: flex; justify-content: center; margin-bottom: 20px;">
+        <div style="border-top: 1px solid var(--text-color); padding: 15px 0; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; color: var(--text-color); cursor: pointer;">
+            POSTS
+        </div>
+    </div>
+
+    <div class="grid-posts">
+        {% if posts %}
+            {% for post in posts %}
+                <div class="grid-item" style="position: relative; padding-bottom: 30px;">
+                    {{ post.content[:50] }}...
+                    <form method="POST" action="{{ url_for('posts.delete_post', post_id=post.id) }}" style="position: absolute; top: 5px; right: 5px;">
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this post?')" style="background: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; box-shadow: 0 1px 3px rgba(0,0,0,0.2);">&times;</button>
+                    </form>
+                    <div style="position: absolute; bottom: 8px; left: 10px; font-size: 0.85rem; display: flex; gap: 15px; color: var(--text-secondary); font-weight: 600;">
+                        <span>♥ {{ post.like_count }}</span>
+                        <span>💬 {{ post.comments|length }}</span>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: var(--text-secondary);">
+                <h2>No Posts Yet</h2>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

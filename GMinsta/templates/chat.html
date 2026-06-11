@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-header">
+        <div class="avatar-small" style="width: 24px; height: 24px; font-size: 12px;">#</div>
+        <h3 style="font-size: 1rem;">Global Chat</h3>
+    </div>
+    
+    <div class="chat-messages">
+        <div class="message received">
+            Welcome to the GMinsta global chat!
+        </div>
+        
+        <div class="message sent">
+            Hey everyone! Love the new Instagram theme.
+        </div>
+        
+        <div class="message received">
+            <span style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 2px;">alice_123</span>
+            It looks so clean!
+        </div>
+    </div>
+    
+    <div class="chat-input">
+        <span class="action-icon" style="display: flex; align-items: center;">😊</span>
+        <input type="text" placeholder="Message..." disabled>
+        <button class="btn btn-primary" style="background: transparent; color: var(--primary-color); padding: 0;" disabled>Send</button>
+    </div>
+</div>
+{% endblock %}

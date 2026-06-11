@@ -1,0 +1,429 @@
+:root {
+    --primary-color: #0095f6;
+    --primary-hover: #1877f2;
+    --bg-color: #fafafa;
+    --text-color: #262626;
+    --text-secondary: #8e8e8e;
+    --border-color: #dbdbdb;
+    --card-bg: #ffffff;
+    --danger: #ed4956;
+    --success: #22c55e;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navigation */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    height: 60px;
+    background-color: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 975px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    text-decoration: none;
+    font-family: 'Brush Script MT', cursive; /* A quick fallback for an IG-like cursive logo */
+}
+
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+    color: var(--text-secondary);
+}
+
+.btn {
+    padding: 6px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-danger {
+    color: var(--danger);
+    background: transparent;
+    padding: 0;
+}
+
+.btn-danger:hover {
+    opacity: 0.7;
+}
+
+/* Layout */
+main {
+    flex: 1;
+    padding: 2rem 20px;
+    max-width: 600px; /* Thinner layout for IG feed */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Alerts */
+.alerts {
+    margin-bottom: 1.5rem;
+}
+
+.alert {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.alert.success { background-color: rgba(34, 197, 94, 0.1); color: var(--success); }
+.alert.error { background-color: rgba(237, 73, 86, 0.1); color: var(--danger); }
+.alert.info { background-color: rgba(0, 149, 246, 0.1); color: var(--primary-color); }
+
+/* Forms (Login/Register) */
+.form-container {
+    max-width: 350px;
+    margin: 2rem auto;
+    padding: 2.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 1px;
+}
+
+.form-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    font-family: 'Brush Script MT', cursive;
+    color: var(--text-color);
+}
+
+.form-group {
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    width: 100%;
+    padding: 9px 8px 7px;
+    background: #fafafa;
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+    color: var(--text-color);
+    font-size: 0.75rem;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #a8a8a8;
+}
+
+.form-switch {
+    max-width: 350px;
+    margin: 10px auto;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+.form-switch a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Posts */
+.post-form {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.post-form textarea {
+    width: 100%;
+    min-height: 60px;
+    resize: vertical;
+    border: none;
+    outline: none;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.post {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+    border-bottom: 1px solid #efefef;
+}
+
+.post-author-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-small {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #dbdbdb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: white;
+    font-size: 14px;
+}
+
+.post-author {
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.post-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.post-content {
+    padding: 14px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    background-color: #fafafa; /* Placeholder for image area */
+}
+
+.post-actions {
+    padding: 14px;
+    border-top: 1px solid #efefef;
+    display: flex;
+    gap: 15px;
+}
+
+.action-icon {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.action-icon:hover {
+    color: var(--text-secondary);
+}
+
+/* Profile */
+.profile-main {
+    max-width: 935px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.profile-avatar-large {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #dbdbdb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    color: white;
+    margin-left: 2rem;
+}
+
+.profile-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.profile-username {
+    font-size: 1.75rem;
+    font-weight: 300;
+}
+
+.profile-stats {
+    display: flex;
+    gap: 2rem;
+}
+
+.stat {
+    font-size: 1rem;
+}
+
+.stat span {
+    font-weight: 600;
+}
+
+.profile-bio {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.grid-posts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.grid-item {
+    aspect-ratio: 1 / 1;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    text-align: center;
+    font-size: 0.8rem;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.grid-item:hover::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.1);
+}
+
+/* Chat UI */
+.chat-container {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    height: 600px;
+}
+
+.chat-header {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    max-width: 60%;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.message.received {
+    align-self: flex-start;
+    background: #efefef;
+    color: var(--text-color);
+}
+
+.message.sent {
+    align-self: flex-end;
+    background: var(--primary-color);
+    color: white;
+}
+
+.chat-input {
+    padding: 1rem;
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input input {
+    flex: 1;
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    font-size: 0.9rem;
+}
+
+.chat-input input:focus {
+    outline: none;
+    border-color: #a8a8a8;
+}

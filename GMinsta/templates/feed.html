@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="post-form">
+    <form method="POST" action="{{ url_for('posts.create_post') }}">
+        <textarea name="content" placeholder="Share what you're thinking, {{ session.get('user_name') }}..." required></textarea>
+        <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn btn-primary">Share</button>
+        </div>
+    </form>
+</div>
+
+<div class="feed-container">
+    {% if posts %}
+        {% for post in posts %}
+            <article class="post">
+                <div class="post-header">
+                    <div class="post-author-info">
+                        <div class="avatar-small">{{ post.author_name[0] | upper }}</div>
+                        <a href="#" class="post-author">{{ post.author_name }}</a>
+                        <span class="post-date">• {{ post.created_at.split(' ')[0] if post.created_at else '' }}</span>
+                    </div>
+                    {% if post.author_id == session.get('user_id') %}
+                        <form method="POST" action="{{ url_for('posts.delete_post', post_id=post.id) }}" style="display: inline;">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this post?')" style="font-size: 1.2rem; cursor: pointer;">&times;</button>
+                        </form>
+                    {% endif %}
+                </div>
+                
+                <div class="post-content">
+                    {{ post.content }}
+                </div>
+
+                <div class="post-actions" style="display: flex; align-items: center; padding: 10px 14px;">
+                    <form method="POST" action="{{ url_for('posts.like_post', post_id=post.id) }}" style="display: inline; margin: 0;">
+                        <button type="submit" style="background: none; border: none; cursor: pointer; color: {% if post.has_liked %}#ed4956{% else %}var(--text-color){% endif %}; font-size: 1.5rem; padding: 0; line-height: 1;">
+                            {% if post.has_liked %}♥{% else %}♡{% endif %}
+                        </button>
+                    </form>
+                    <span style="font-size: 0.9rem; margin-right: 15px; margin-left: 5px; font-weight: 600;">{{ post.like_count }} likes</span>
+                    <span class="action-icon" style="font-size: 1.3rem; margin-right: 15px;">💬</span>
+                    <span class="action-icon" style="font-size: 1.3rem;">➦</span>
+                </div>
+                
+                <div style="padding: 0 14px 10px; font-size: 0.9rem;">
+                    <strong>{{ post.author_name }}</strong> {{ post.content }}
+                </div>
+                
+                <div class="post-comments" style="padding: 0 14px 14px; font-size: 0.85rem;">
+                    {% if post.comments %}
+                        <div class="comments-list" style="margin-bottom: 10px;">
+                            {% for comment in post.comments %}
+                                <div class="comment" style="margin-bottom: 5px;">
+                                    <strong>{{ comment.author_name }}</strong> <span style="color: var(--text-secondary);">{{ comment.content }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    
+                    <form method="POST" action="{{ url_for('posts.add_comment', post_id=post.id) }}" style="display: flex; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 10px;">
+                        <input type="text" name="content" placeholder="Add a comment..." required style="flex: 1; border: none; background: transparent; outline: none; font-size: 0.85rem; color: var(--text-color);">
+                        <button type="submit" style="background: none; border: none; color: var(--primary-color); font-weight: 600; cursor: pointer; font-size: 0.85rem;">Post</button>
+                    </form>
+                </div>
+            </article>
+        {% endfor %}
+    {% else %}
+        <div style="text-align: center; padding: 40px; color: var(--text-secondary);">
+            <h2 style="margin-bottom: 10px;">Welcome to GMinsta</h2>
+            <p>No posts yet. Start following people or share your first post!</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
